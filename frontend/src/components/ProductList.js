@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import '../ProductList.css';
 
 export default function ProductList() {
   const [products, setProducts] = useState([]);
-  const authRole = JSON.parse(localStorage.getItem("user")).role;
+  const authRole = localStorage.getItem('user')?JSON.parse(localStorage.getItem("user")).role : null;
   useEffect(() => {
     getProducts();
   }, []);
@@ -60,23 +61,26 @@ export default function ProductList() {
   return (
     <div className="products-list">
       <h1>Product List</h1>
-      <input
-        type="text"
-        placeholder="Search Product"
-        onChange={searchHandler}
-      />
-      <ul>
-        <li>S .No</li>
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search Product"
+          onChange={searchHandler}
+          className="search-input"
+        />
+      </div>
+      <ul className="header-row">
+        <li>S.No</li>
         <li>Id</li>
         <li>Name</li>
-        <li>Price </li>
+        <li>Price</li>
         <li>Category</li>
-        <li>Quentity</li>
+        <li>Quantity</li>
         {authRole === "vendor" && <li>Actions</li>}
       </ul>
       {products.length > 0 ? (
         products.map((item, index) => (
-          <ul key={item._id}>
+          <ul key={item._id} className="product-row">
             <li>{index + 1}</li>
             <li>{item._id}</li>
             <li>{item.name}</li>
@@ -86,14 +90,13 @@ export default function ProductList() {
             {authRole === "vendor" && (
               <li>
                 <button onClick={() => deleteProduct(item._id)}>Delete</button>
-                <Link
-                to={`/product/update/${item._id}`}>Update</Link>
+                <Link to={`/product/update/${item._id}`}>Update</Link>
               </li>
             )}
           </ul>
         ))
       ) : (
-        <h1>No Product Found </h1>
+        <h1>No Product Found</h1>
       )}
     </div>
   );

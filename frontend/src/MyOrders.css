@@ -1,0 +1,95 @@
+/* Basic reset to remove default browser styling */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .orders-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #e1e1e1;
+  }
+  
+  .orders-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .order-item {
+    border: 1px solid #e1e1e1;
+    border-left: 4px solid #5cb85c; /* Green color for order items */
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .order-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .order-header span {
+    font-weight: bold;
+  }
+  
+  .order-products {
+    margin-bottom: 10px;
+  }
+  
+  .product-details {
+    padding-left: 20px;
+    border-left: 2px solid #ccc;
+    margin-bottom: 5px;
+  }
+  
+  .product-details span {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .order-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .total-amount {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .status {
+    text-transform: capitalize;
+  }
+  
+  .status:before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  
+  .status[status="pending"]:before {
+    background-color: #f0ad4e; /* Orange color for pending status */
+  }
+  
+  .status[status="delivered"]:before {
+    background-color: #5cb85c; /* Green color for completed status */
+  }
+  
+  .no-orders {
+    text-align: center;
+    color: #666;
+    margin-top: 20px;
+  }

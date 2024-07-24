@@ -3,6 +3,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #f5f5f5;
 }
 
 /* App Styles */
@@ -146,13 +147,8 @@ body {
   transform: translateY(-5px);
 }
 
-/* Global Styles */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f5f5f5;
-}
+
+
 
 /* Container for the order list */
 .orders-container {

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
+import '../AllOrders.css'
 
 export default function AllOrders() {
     const [orders,setOrders]=useState('');
@@ -34,33 +35,38 @@ const changeStatus = async (orderid)=>{
         alert('Order Delivered')
         getOrders();
     }
-  return (
-    <div className='orders-container'>
-    <h1>Orders List</h1>
-    {orders.length > 0 ? (
-      orders.map((order, index) => (
-        <ul key={order._id} className='order-item'>
-          <li className='order-number'>Order Number: {index + 1}</li>
-          <li className='oreder-id'>Order ID: {order._id}</li>
-          {order.products.map((product, productIndex) => (
-            <div key={productIndex} className='product-details'>
-              <li>Product Name: {product.productId.name}</li>
-              <li>Quantity: {product.quantity}</li>
+    return (
+      <div className="orders-container">
+        <h1>Orders List</h1>
+        {orders.length > 0 ? (
+          orders.map((order, index) => (
+            <div key={order._id} className="order-item">
+              <div className="order-header">
+                <span className="order-number">Order Number: {index + 1}</span>
+                <span className="order-id">Order ID: {order._id}</span>
+              </div>
+              <div className="order-products">
+                {order.products.map((product, productIndex) => (
+                  <div key={productIndex} className="product-details">
+                    <span className="product-name">Product Name: {product.productId ? product.productId.name : 'No name available'}</span>
+                    <span className="product-quantity">Quantity: {product.quantity}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="order-footer">
+                <span className="total-amount">Total Amount: {order.totalAmount}</span>
+                <span className="status" status={order.status}>Status: {order.status}</span>
+                {order.status === 'pending' && (
+                  <button className="status-button" onClick={() => changeStatus(order._id)}>
+                    Delivered
+                  </button>
+                )}
+              </div>
             </div>
-          ))}
-          <li className='total-amount'>Total Amount: {order.totalAmount}</li>
-          <li className='status'>Status: {order.status}</li>
-          {order.status === 'pending' && (
-              <button className="status-button" onClick={()=>changeStatus(order._id)}>
-                Delivered
-              </button>
-            )}
-        </ul>
-      )
-    )
-    ) : (
-      <p>No orders available</p>
-    )}
-  </div>
-  )
+          ))
+        ) : (
+          <p className="no-orders">No orders available</p>
+        )}
+      </div>
+    );
 }
